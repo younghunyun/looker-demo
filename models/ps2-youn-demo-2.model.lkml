@@ -28,20 +28,21 @@ label: "ps2-youn-demo-2"
 # Each joined view also needs to define a primary key.
 
 explore: call_delivery {
+  label: "배달주문정보탐색"
   join: seoul_weather {
     type: inner
-    sql_on: SUBSTR(${call_delivery.addr_sido}, 0, 3) = SUBSTR(${seoul_weather.sido}, 0, 3)
-      AND SUBSTR(${call_delivery.addr_sigungu}, 0, 3) = SUBSTR(${seoul_weather.gungu}, 0, 3)
-      AND SUBSTR(${call_delivery.addr_dong}, 0, 3) = SUBSTR(${seoul_weather.dong}, 0, 3)
-      AND ${call_delivery.date_date} = ${seoul_weather.date_date} ;;
-      # AND ${call_delivery.time_tier} = ${seoul_weather.hour} ;;
+    sql_on: SUBSTR(${call_delivery.addr_sido}, 1, 2) = SUBSTR(${seoul_weather.sido}, 1, 2)
+      AND ${call_delivery.addr_sigungu} = ${seoul_weather.gungu}
+      AND SUBSTR(${call_delivery.addr_dong}, 1, 3) = SUBSTR(${seoul_weather.dong}, 1, 3)
+      AND ${call_delivery.date_date} = ${seoul_weather.date_date}
+      AND ${call_delivery.time_tier} = ${seoul_weather.hour} ;;
     relationship: one_to_one
   }
   join: seoul_population {
     type: inner
-    sql_on: ${call_delivery.addr_sido} = ${seoul_population.sido}
+    sql_on: SUBSTR(${call_delivery.addr_sido}, 1, 2) = SUBSTR(${seoul_population.sido}, 1, 2)
       AND ${call_delivery.addr_sigungu} = ${seoul_population.gungu}
-      AND SUBSTR(${call_delivery.addr_dong}, 0, 2) = ${seoul_population.dongmyeon};;
+      AND SUBSTR(${call_delivery.addr_dong}, 1, 3) = SUBSTR(${seoul_population.dongmyeon}, 1, 3) ;;
     relationship: one_to_one
   }
 }
