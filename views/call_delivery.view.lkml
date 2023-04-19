@@ -98,9 +98,9 @@ view: call_delivery {
   }
 
   measure: total_costs_china {
-    label: "중국음식매축"
+    label: "중국음식매출"
     type: number
-    sql: ${TABLE}.total_calls_china * 10000 ;;
+    sql: (CASE WHEN  ${TABLE}.industry_item = '음식점-중국음식' THEN ${TABLE}.call_cnt ELSE 0 END) * 10000 ;;
   }
 
   measure: total_calls_chicken {
@@ -120,5 +120,4 @@ view: call_delivery {
     type: sum
     sql: CASE WHEN  ${TABLE}.industry_item = '음식점-족발/보쌈전문' THEN ${TABLE}.call_cnt ELSE 0 END ;;
   }
-
 }
