@@ -1,5 +1,6 @@
 # The name of this view in Looker is "Call Delivery"
 view: call_delivery {
+  label: "배달주문정보"
   # The sql_table_name parameter indicates the underlying database table
   # to be used for all fields in this view.
   sql_table_name: `looker_demo.call_delivery`

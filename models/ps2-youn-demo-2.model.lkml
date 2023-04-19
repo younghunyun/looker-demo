@@ -51,7 +51,9 @@ explore: seoul_population {
   hidden: yes
 }
 
-explore: seoul_households {}
+explore: seoul_households {
+  label: "서울가구정보탐색"
+}
 
 explore: seoul_weather {
   hidden: yes
