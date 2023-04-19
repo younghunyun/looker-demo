@@ -91,33 +91,15 @@ view: call_delivery {
     sql: ${call_cnt} ;;
   }
 
-  measure: total_calls_china {
-    label: "중국음식주문수"
+  measure: total_costs {
+    label: "전체매출"
     type: sum
-    sql: CASE WHEN  ${TABLE}.industry_item = '음식점-중국음식' THEN ${TABLE}.call_cnt ELSE 0 END ;;
-  }
-
-  measure: total_costs_china {
-    label: "중국음식매출"
-    type: number
-    sql: (CASE WHEN  ${TABLE}.industry_item = '음식점-중국음식' THEN ${TABLE}.call_cnt ELSE 0 END) * 10000 ;;
-  }
-
-  measure: total_calls_chicken {
-    label: "치킨주문수"
-    type:sum
-    sql: CASE WHEN  ${TABLE}.industry_item = '치킨' THEN ${TABLE}.call_cnt ELSE 0 END ;;
-  }
-
-  measure: total_calls_pizza {
-    label: "피자주문수"
-    type: sum
-    sql: CASE WHEN  ${TABLE}.industry_item = '피자' THEN ${TABLE}.call_cnt ELSE 0 END ;;
-  }
-
-  measure: total_calls_pork {
-    label: "족발보쌈주문수"
-    type: sum
-    sql: CASE WHEN  ${TABLE}.industry_item = '음식점-족발/보쌈전문' THEN ${TABLE}.call_cnt ELSE 0 END ;;
+    sql: CASE
+      WHEN  ${TABLE}.industry_item = '치킨' THEN ${TABLE}.call_cnt * 18000
+      WHEN  ${TABLE}.industry_item = '피자' THEN ${TABLE}.call_cnt * 23000
+      WHEN  ${TABLE}.industry_item = '음식점-중국음식' THEN ${TABLE}.call_cnt * 15000
+      WHEN  ${TABLE}.industry_item = '음식점-족발/보쌈전문' THEN ${TABLE}.call_cnt * 30000
+      ELSE ${TABLE}.call_cnt * 20000
+    END ;;
   }
 }
