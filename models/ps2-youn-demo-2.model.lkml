@@ -14,7 +14,8 @@ datagroup: ps2-youn-demo-2_default_datagroup {
 
 persist_with: ps2-youn-demo-2_default_datagroup
 
-label: "ps2-youn-demo-2"
+# label: "ps2-youn-demo-2"
+label: "PS2팀-모델.데모2"
 
 # Explores allow you to join together different views (database tables) based on the
 # relationships between fields. By joining a view into an Explore, you make those
