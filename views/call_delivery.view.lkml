@@ -127,4 +127,16 @@ view: call_delivery {
       ELSE ${TABLE}.call_cnt * 20000
     END ;;
   }
+
+  measure: average_costs {
+    label: "평균매출"
+    type: average
+    sql: CASE
+      WHEN  ${TABLE}.industry_item = '치킨' THEN ${TABLE}.call_cnt * 18000
+      WHEN  ${TABLE}.industry_item = '피자' THEN ${TABLE}.call_cnt * 23000
+      WHEN  ${TABLE}.industry_item = '음식점-중국음식' THEN ${TABLE}.call_cnt * 15000
+      WHEN  ${TABLE}.industry_item = '음식점-족발/보쌈전문' THEN ${TABLE}.call_cnt * 30000
+      ELSE ${TABLE}.call_cnt * 20000
+    END ;;
+  }
 }
