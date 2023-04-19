@@ -52,6 +52,31 @@ view: call_delivery {
     sql: ${TABLE}.day ;;
   }
 
+  dimension: day_index {
+    label: "요일인덱스"
+    type: number
+    sql: CASE
+      WHEN ${TABLE}.day = '월' THEN 1
+      WHEN ${TABLE}.day = '화' THEN 2
+      WHEN ${TABLE}.day = '수' THEN 3
+      WHEN ${TABLE}.day = '목' THEN 4
+      WHEN ${TABLE}.day = '금' THEN 5
+      WHEN ${TABLE}.day = '토' THEN 6
+      WHEN ${TABLE}.day = '일' THEN 7
+      ELSE 0
+    END ;;
+  }
+
+  dimension: is_weekend {
+    label: "주중주말"
+    type: string
+    sql: CASE
+      WHEN ${TABLE}.day IN ('월', '화', '수', '목', '금') THEN "주중"
+      WHEN ${TABLE}.day IN ('토', '일') THEN "주말"
+      ELSE ""
+    END ;;
+  }
+
   dimension: time_tier {
     label: "시간대"
     type: string
