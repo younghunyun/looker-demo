@@ -3,6 +3,8 @@ connection: "ps2_youn__stf-development__bigquery__looker_demo"
 
 # include all the views
 include: "/views/**/*.view"
+# include all the dashboards
+include: "/dashboards/*.dashboard.lookml"
 
 # Datagroups define a caching policy for an Explore. To learn more,
 # use the Quick Help panel on the right to see documentation.
